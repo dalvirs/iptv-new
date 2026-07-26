@@ -1,0 +1,6 @@
+{
+  "name": "IB Pro IPTV Player",
+  "description": "A sleek Xtream Codes IPTV & M3U player with EPG, customizable channel categories, offline downloads, live TV recording, and scheduled programming.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
