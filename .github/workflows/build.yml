@@ -23,7 +23,7 @@ jobs:
         run: npm run build
 
       - name: Add Android platform (if not present)
-        run: npx --package @capacitor/cli cap add android || true
+        run: npx --package @capacitor/cli cap add android 
 
       - name: Sync Capacitor
         run: npx --package @capacitor/cli cap sync android
