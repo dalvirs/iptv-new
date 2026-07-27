@@ -19,14 +19,20 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Client-only build. We intentionally skip the full "npm run build"
+      # script here since that also bundles server.ts (the Express server),
+      # which the packaged native app doesn't need or run.
       - name: Build web assets
-        run: npm run build
+        run: npx vite build
 
-      - name: Add Android platform (if not present)
-        run: npx --package @capacitor/cli cap add android 
+      # The android/ folder isn't committed to the repo, so we generate it
+      # fresh each run. If you later commit android/ yourself, this step
+      # becomes a no-op and is safe to leave in place.
+      - name: Add Android platform (first run only)
+        run: test -d android || npx cap add android
 
-      - name: Sync Capacitor
-        run: npx --package @capacitor/cli cap sync android
+      - name: Sync web assets into the native project
+        run: npx cap sync android
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
